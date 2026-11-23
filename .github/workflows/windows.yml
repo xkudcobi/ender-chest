@@ -1,0 +1,28 @@
+name: Windows tests
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Desktop identity and collision handling
+        shell: powershell
+        run: .\EnderChest.ps1 -MonitorTest
+      - name: NTFS move, edit and restore
+        shell: powershell
+        run: .\EnderChest.ps1 -IntegrationTest
+      - name: Journal recovery, locked folders and persisted index
+        shell: powershell
+        run: .\EnderChest.ps1 -SafetyTest
+      - name: Bulk move, project detection and link health
+        shell: powershell
+        run: .\EnderChest.ps1 -FeatureTest
+      - name: Build launcher and icon
+        shell: powershell
+        run: .\tools\Build.ps1
+      - name: Groups inside the chest
+        shell: powershell
+        run: .\EnderChest.ps1 -GroupTest
+      - name: Languages (keys, placeholders, pixel-font glyphs)
+        shell: powershell
+        run: .\EnderChest.ps1 -LangTest

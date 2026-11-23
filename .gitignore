@@ -1,0 +1,11 @@
+# Built by tools/Build.ps1 (shipped in the Releases ZIP)
+EnderChest.exe
+*.zip
+
+# Local backups and editor files
+*.yedek*
+*.bak
+.vs/
+.vscode/
+Thumbs.db
+desktop.ini
